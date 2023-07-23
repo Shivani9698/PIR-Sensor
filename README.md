@@ -22,6 +22,10 @@ Connect the components to the Arduino board as follows:
 - *LED Anode (+)* to *Digital Pin 13 (Arduino)*
 - *LED Cathode (-)* to *GND (Arduino)* (through a 220-ohm resistor, if needed)
 
+## Wiring diagram
+
+![image](https://github.com/Shivani9698/PIR-Sensor/assets/119753029/d3aaea87-7a5b-4fd2-8477-df5b65d6a304)
+
 ## How the Sketch Works
 
 The Arduino sketch utilizes a passive infrared (PIR) motion sensor to detect motion. When motion is detected, the LED connected to Pin 13 on the Arduino board will turn on. When the motion stops, the LED will turn off.
