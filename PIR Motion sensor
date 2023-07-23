@@ -1,0 +1,36 @@
+
+int led = 13;                // the pin that the LED is attached to
+int sensor = 2;              // the pin that the sensor is attached to
+int state = LOW;             // by default, no motion detected
+int val = 0;                 // variable to store the sensor status (value)
+
+void setup() {
+  pinMode(led, OUTPUT);      // initialize LED as an output
+  pinMode(sensor, INPUT);    // initialize sensor as an input
+  Serial.begin(9600);        // initialize serial communication at a baud rate of 9600
+}
+
+void loop() {
+  val = digitalRead(sensor);   // read sensor value
+
+  if (val == HIGH) {           // check if the sensor is HIGH (motion detected)
+    digitalWrite(led, HIGH);   // turn LED ON
+    delay(100);                // delay 100 milliseconds (to avoid rapid LED flickering)
+
+    // Check if the previous state was LOW (no motion detected)
+    if (state == LOW) {
+      Serial.println("Motion detected!");
+      state = HIGH;            // update variable state to HIGH (motion detected)
+    }
+  } 
+  else {
+    digitalWrite(led, LOW);    // turn LED OFF
+    delay(200);                // delay 200 milliseconds (to avoid rapid LED flickering)
+
+    // Check if the previous state was HIGH (motion was detected but now stopped)
+    if (state == HIGH) {
+      Serial.println("Motion stopped!");
+      state = LOW;             // update variable state to LOW (motion stopped)
+    }
+  }
+}
